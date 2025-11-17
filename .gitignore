@@ -8,3 +8,6 @@ dist/
 *.egg-info/
 
 .vscode/
+
+.ruff_cache/
+.uv/
