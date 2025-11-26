@@ -29,12 +29,12 @@ based on [**answer set programming**](https://potassco.org) (ASP).
 An **instance** is defined by the following facts:
 
 - **Nodes** `node(X,T)` where:
-    - `X` is a unique identifier,
-    - `T` denotes the transshipment cost per unit of demand.
+    - `X` is a unique node identifier,
+    - `T` is the transshipment cost per unit of demand.
 
 - **Vehicles** `vehicle(V,C)` where:
-    - `V` is a unique identifier,
-    - `C` denotes the vehicle’s capacity.
+    - `V` is a unique vehicle identifier,
+    - `C` is the vehicle's capacity.
 
 - **Availability periods** `availability(V,B,E)` where:
     - `V` is a vehicle identifier,
@@ -45,7 +45,7 @@ An **instance** is defined by the following facts:
     - `X` is the origin node,
     - `Y` is the destination node,
     - `V` is the vehicle identifier,
-    - `C` is the travel cost on the arc,
+    - `C` is the travel cost of the arc,
     - `D` is the travel duration.
 
 - **Months** `month(M,B,E)` where:
