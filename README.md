@@ -27,7 +27,7 @@ $ pip install .
 > You may need to use `python3` and `pip3` instead of `python` and `pip`,
 > depending on your system.
 
-To install Roulingo into a virtual environment:
+To install Roulingo into a virtual environment, and avoid modifying your system-wide Python installation:
 
 ```console
 $ python -m venv .venv
@@ -37,9 +37,6 @@ $ pip install .
 
 > [!NOTE]
 > Refer to [this table](https://docs.python.org/3/library/venv.html#how-venvs-work) for the correct `source` command on your system.
-
-> [!TIP]
-> Use a virtual environment to avoid modifying your system-wide Python installation.
 
 Finally, to verify your installation:
 
