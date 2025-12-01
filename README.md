@@ -14,7 +14,7 @@ based on [**answer set programming**](https://potassco.org) (ASP).
 
 ## Installation
 
-Roulingo should be installed locally after cloning this repository.
+The Roulingo package should be installed locally after cloning this repository.
 It requires **Python 3.10** or above.
 Once the repository has been cloned,
 navigate to the directory and run:
