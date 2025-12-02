@@ -121,16 +121,14 @@ Note that converted facts are wrapped by the `data/1` atom;
 these must be [preprocessed](#preprocessing) before solving can occur.
 
 Because ASP only supports integers,
-two options are available for the `roulingo convert` command.
-These define constant multipliers for converting real numbers into integers:
+two additional options for `roulingo convert` define constant multipliers for converting real numbers into integers:
 
-
-- `--duration-factor` is 10 by default, and applies to all **temporal values**:
+- The `--duration-factor` is 10 by default, and applies to:
     - Arc traversal durations
     - Minimum pickup frequencies
     - Maximum transit durations
 
-- `--currency-factor` is 100 by default, and applies to:
+- The `--currency-factor` is 100 by default, and applies to:
     - Arc traversal costs
     - Revenues per unit
 
