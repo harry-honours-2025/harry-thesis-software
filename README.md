@@ -145,7 +145,8 @@ Once an instance has been generated using `roulingo convert`,
 it should be preprocessed using `roulingo process` to eliminate redundancies in the input data.
 The `process` subcommand also supports several auxiliary operations:
 
-…
+- [Duplicating instances](#duplicating-instances)
+- [Extracting sub-instances](#extracting-sub-instances)
 
 > [!TIP]
 > Run `roulingo process --help` for a breakdown of the `process` subcommand.
@@ -162,7 +163,7 @@ The following command preprocesses `input.lp`, duplicating the instance twice:
 $ roulingo process input.lp output.lp --duplicate 2
 ```
 
-Over the following unprocessed `input.lp` instance:
+Given the following unprocessed `input.lp` instance:
 
 ```answer-set-programming
 data(node(1,none)).
@@ -175,9 +176,9 @@ data(month(0,1,31)).
 data(demand(0,1,2,0,100,4,10,5)).
 ```
 
-Would thus be preprocessed into the following `output.lp` instance,
-where all nodes, vehicles, availabilities, arcs, and demands have been duplicated and prefixed
-with a letter signifying which sub-network they belong to:
+Preprocessing produces the following `output.lp` instance.
+All nodes, vehicles, availabilities, arcs, and demands have been duplicated and renamed,
+with a prefix indicating the sub-network to which each copy belongs:
 
 ```answer-set-programming
 %*
