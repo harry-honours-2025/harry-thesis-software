@@ -12,7 +12,7 @@ def invoke_roulingo() -> None:
         case {"sub": "convert", **convert_args}:
             roulingo.conversion.convert_instance_csvs(**convert_args)
         case {"sub": "process", **process_args}:
-                roulingo.processing.preprocess_and_output_instance(**process_args)
+            roulingo.processing.preprocess_and_output_instance(**process_args)
         case {"sub": "solve", **solve_args}:
             roulingo.solving.construct_and_invoke_solver(**solve_args)
 
@@ -101,15 +101,15 @@ def construct_processing_args(parser: argparse.ArgumentParser) -> None:
         dest="duplicate_count",
         metavar="COUNT",
     )
-    parser.add_argument(
-        "--bounds",
-        nargs=2,
-        default=[7, 12],
-        type=int,
-        dest="range_bounds",
-        metavar=("LOWER", "UPPER"),
-        help="closed range to extract",
-    )
+    # parser.add_argument(
+    #     "--bounds",
+    #     nargs=2,
+    #     default=[7, 12],
+    #     type=int,
+    #     dest="range_bounds",
+    #     metavar=("LOWER", "UPPER"),
+    #     help="closed range to extract",
+    # )
 
 
 def construct_solving_args(parser: argparse.ArgumentParser) -> None:

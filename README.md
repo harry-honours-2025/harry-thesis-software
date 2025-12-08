@@ -5,9 +5,10 @@ Roulingo is a preprocessing and solving system for the
 **transit-constraint recurring pickup and delivery problem** (TCRPDP)
 based on [**answer set programming**](https://potassco.org) (ASP).
 
+- [Installation](#installation)
+- [Usage](#usage)
+
 <!--
-    - [Installation](#installation)
-    - [Usage](#usage)
         - [Instance Construction](#instance-construction)
             - [CSV Conversion](#csv-conversion)
             - [Preprocessing](#preprocessing)
@@ -48,10 +49,14 @@ $ roulingo --help
 
 ## Usage
 
-…
+Roulingo provides three subcommands:
+
+1. `convert` generates an instance from input data.
+2. `process` preprocesses the instance.
+3. `solve` runs the solver on a preprocessed instance.
 
 > [!TIP]
-> Run `roulingo --help` for an overview of available sub-commands.
+> Run `roulingo --help` to view all available subcommands and their options.
 
 ### Instance Construction
 
@@ -65,7 +70,7 @@ An **instance** is defined by the following facts:
     - `V` is a unique vehicle identifier,
     - `C` is the vehicle's capacity.
 
-- **Availability periods** `availability(V,B,E)` where:
+- **Availability periods** `available(V,B,E)` where:
     - `V` is a vehicle identifier,
     - `B` is the start date of the availability period,
     - `E` is the end date of the availability period.
@@ -129,10 +134,79 @@ two additional options for `roulingo convert` define multipliers for converting 
     - Arc traversal costs
     - Revenues per unit
 
+For example, `--duration-factor 100` will convert an arc duration of 3.84 into 384.
+
 > [!TIP]
-> Run `roulingo convert --help` for a usage breakdown.
+> Run `roulingo convert --help` for a breakdown of the `convert` subcommand.
 
 #### Preprocessing
+
+Once an instance has been generated using `roulingo convert`,
+it should be preprocessed using `roulingo process` to eliminate redundancies in the input data.
+The `process` subcommand also supports several auxiliary operations:
+
+…
+
+> [!TIP]
+> Run `roulingo process --help` for a breakdown of the `process` subcommand.
+
+##### Duplicating Instances
+
+Independent duplicates of an instance's underlying network can be generated using the `--duplicate` option.
+For example, `--duplicate 2` produces a single instance containing two identical, disconnected copies of all nodes,
+vehicles, arcs, and demands from the original instance.
+
+The following command preprocesses `input.lp`, duplicating the instance twice:
+
+```console
+$ roulingo process input.lp output.lp --duplicate 2
+```
+
+Over the following unprocessed `input.lp` instance:
+
+```
+data(node(1,none)).
+data(node(2,none)).
+data(vehicle(1,10)).
+data(available(1,1,31)).
+data(arc(1,2,1,0,2)).
+data(arc(2,1,1,0,2)).
+data(month(0,1,31)).
+data(demand(0,1,2,0,100,4,10,5)).
+```
+
+Would thus be preprocessed into the following `output.lp` instance,
+where all nodes, vehicles, availabilities, arcs, and demands have been duplicated and prefixed
+with a letter signifying which sub-network they belong to:
+
+```answer-set-programming
+%*
+   #const dup = 2.
+*%
+#const horizon=30.
+node(a1).
+node(a2).
+node(b1).
+node(b2).
+vehicle(a1,10).
+vehicle(b1,10).
+available(a1,0,30).
+available(b1,0,30).
+month(0,0,30).
+arc(a1,a2,a1,0,2).
+arc(a2,a1,a1,0,2).
+arc(b1,b2,b1,0,2).
+arc(b2,b1,b1,0,2).
+demand(a0,a1,a2,0,100,4,10,5).
+demand(b0,b1,b2,0,100,4,10,5).
+```
+
+> [!NOTE]
+> All preprocessing configuration options are recorded at the top of the generated output file.
+
+This feature is primarily intended for the generation of benchmarking instances.
+
+##### Extracting Subinstances
 
 …
 
