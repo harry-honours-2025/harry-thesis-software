@@ -164,7 +164,7 @@ $ roulingo process input.lp output.lp --duplicate 2
 
 Over the following unprocessed `input.lp` instance:
 
-```
+```answer-set-programming
 data(node(1,none)).
 data(node(2,none)).
 data(vehicle(1,10)).
