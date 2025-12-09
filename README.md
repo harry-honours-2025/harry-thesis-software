@@ -246,4 +246,32 @@ $ roulingo process input.lp output.lp --config
 
 ### Solver Invocation
 
-…
+Once an instance has been [preprocessed](#preprocessing), it can be passed to the solver.
+
+The following command runs the solver on `instance.lp` for up to 300 seconds and writes the best solution found to `solution.lp`:
+
+```console
+$ roulingo solve instance.lp --duration 300 --solution solution.lp
+```
+
+> [!TIP]
+> Run `roulingo solve --help` for a full description of the `solve` subcommand and its options.
+
+> [!IMPORTANT]
+> Any additional options passed to `roulingo solve` are relayed to `clingo` to facilitate solver configuration.
+> For example, the following command enables hierarchical optimisation in `clingo` using the `--opt-strategy=bb,hier` option:
+>
+> ```console
+> $ roulingo solve instance.lp --duration 300 --opt-strategy=bb,hier
+> ```
+>
+> For a complete list of available clingo options, see:
+>
+> ```
+> $ clingo --help=3
+> ```
+
+#### Iterative Solving
+
+The `--iterative-solving` option for `roulingo solve` treats each month as an individual sub-problem,
+and accumulates the solution by solving each individual month in order.
