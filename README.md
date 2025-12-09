@@ -259,13 +259,13 @@ $ roulingo solve instance.lp --duration 300 --solution solution.lp
 
 > [!IMPORTANT]
 > Any additional options passed to `roulingo solve` are relayed to `clingo` to facilitate solver configuration.
-> For example, the following command enables hierarchical optimisation in `clingo` using the `--opt-strategy=bb,hier` option:
+> For example, the following command enables hierarchical optimisation using `--opt-strategy`:
 >
 > ```console
 > $ roulingo solve instance.lp --duration 300 --opt-strategy=bb,hier
 > ```
 >
-> For a complete list of available clingo options, see:
+> For a complete list of available `clingo` options, see:
 >
 > ```
 > $ clingo --help=3
